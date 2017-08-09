@@ -1,7 +1,6 @@
 # Sistema Restaurante - Front End
 
-Projeto frontend do sistema de restaurante
-
+Projeto FrontEnd de um sistema simples de restaurante
 
 ## Tecnologias utilizadas
 
