@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-pratos-lista',
+  selector: 'pratos-lista',
   templateUrl: './pratos-lista.component.html',
   styleUrls: ['./pratos-lista.component.css']
 })
