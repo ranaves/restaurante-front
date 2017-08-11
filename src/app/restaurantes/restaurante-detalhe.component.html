@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12">
+      <h2 class="titulo">Cadastro de Restaurante</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12">
+      <div class="card">
+        <div class="card-header">
+          <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item">
+              <a class="nav-link">Dados</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-block">
+          <form (ngSubmit)="onSubmit()" #restauranteForm="ngForm" novalidate>
+            <div [ngClass]="getFormGroupClass(nome.valid, nome.pristine)">
+              <label for="nome">Nome do Restaurante</label>
+              <input type="text" [ngClass]="getFormControlClass(nome.valid, nome.pristine)" 
+                placeholder="Digite o nome do restaurante"
+                name ="nome" 
+                required
+                #nome="ngModel"
+                [(ngModel)]="restaurante.nome">
+              <div class="form-control-feedback" [hidden]="nome.valid || nome.pristine">O campo nome é obrigatório!</div>
+              <br>
+            </div>
+            <button type="button" class="btn btn-danger" style="margin-right: 20px;" (click)="goBack()">Cancelar</button>
+            <button type="submit" class="btn btn-success" [disabled]="!restauranteForm.form.valid">Salvar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

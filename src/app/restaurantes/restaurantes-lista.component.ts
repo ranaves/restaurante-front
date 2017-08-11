@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RestauranteService } from './shared/restaurante.service';
+import { Restaurante } from './shared/restaurante';
 
 @Component({
   selector: 'restaurantes-lista',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestaurantesListaComponent implements OnInit {
 
-  constructor() { }
+  restaurantes: Restaurante[] = []; 
 
-  ngOnInit() {
+  constructor(
+    private restauranteService: RestauranteService
+  ) {}
+
+  ngOnInit(): void {
+     this.restauranteService.findAll()
+        .then((restaurantes: Restaurante[]) => {
+            this.restaurantes = restaurantes;            
+        }).catch(err =>  {
+            console.log(err);
+        });          
   }
 
 }

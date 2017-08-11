@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppRoutingModule } from '../app-routing.module';
-import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { RouterModule}   from '@angular/router';
 
 import { RestaurantesListaComponent } from './restaurantes-lista.component';
+import { RestauranteDetalheComponent } from './restaurante-detalhe.component';
+
+import { RestauranteService } from './shared/restaurante.service';
 
 @NgModule({
   imports: [
-    CommonModule,
-    AppRoutingModule,
+    CommonModule,    
     FormsModule,
-    RouterModule
+    RouterModule, 
   ],
   declarations: [
-    RestaurantesListaComponent
+    RestaurantesListaComponent,
+    RestauranteDetalheComponent
   ],
   exports: [
-    RestaurantesListaComponent
-  ]
-
+    RestaurantesListaComponent    
+  ],
+  providers: [
+    RestauranteService
+  ],
 })
 export class RestaurantesModule { }
