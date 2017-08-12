@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'restaurantes', component: RestaurantesListaComponent },
   { path: 'pratos', component: PratosListaComponent },
-  { path: 'restaurante/save', component: RestauranteDetalheComponent }
+  { path: 'restaurante/save', component: RestauranteDetalheComponent },
+  { path: 'restaurante/save/:id', component: RestauranteDetalheComponent }
 ];
 
 @NgModule({

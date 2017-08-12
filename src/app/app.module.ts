@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
+import { DialogService } from './dialog.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     HomeComponent
   ],   
-  providers: [],
+  providers: [ DialogService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

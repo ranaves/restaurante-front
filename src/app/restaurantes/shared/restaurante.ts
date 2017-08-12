@@ -1,10 +1,10 @@
 export class Restaurante {
 
-    public id: number;   
+    public Id: number;   
     
     constructor(
-        public nome: string
+        public Nome: string
     ) {}
-    
+
 
 }

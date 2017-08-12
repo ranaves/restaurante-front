@@ -22,15 +22,15 @@ export class RestauranteDetalheComponent implements OnInit {
 
   ngOnInit() {
     this.restaurante = new Restaurante('');
-    console.log('entrou aqui');
+    
     this.route.params.forEach((params: Params) => {
         let id: number = +params['id'];
-       
+        
         if (id) {
             this.isNew = false;                
             this.restauranteService.find(id)
             .then((restaurante: Restaurante) => {
-                this.restaurante = restaurante;
+                this.restaurante = restaurante;        
             }) 
         }                       
     });
@@ -38,13 +38,11 @@ export class RestauranteDetalheComponent implements OnInit {
 
   onSubmit(): void {
     let promise;
-    console.log('entrou aqui tbem');
+   
     if (this.isNew) {
-        promise = this.restauranteService.create(this.restaurante); 
-        console.log('restaurante cadastrado com sucesso');           
+        promise = this.restauranteService.create(this.restaurante);         
     } else {
-        promise = this.restauranteService.update(this.restaurante);
-        console.log('restaurnate editado com sucesso');
+        promise = this.restauranteService.update(this.restaurante);        
     }
     promise.then(restaurante => this.goBack());
   }
