@@ -42,8 +42,7 @@ export class RestauranteDetalheComponent implements OnInit {
     let promise;
    
     if (this.isNew) {
-        promise = this.restauranteService.create(this.restaurante);  
-        console.log(this.restaurante);       
+        promise = this.restauranteService.create(this.restaurante);               
     } else {
         promise = this.restauranteService.update(this.restaurante);        
     }
