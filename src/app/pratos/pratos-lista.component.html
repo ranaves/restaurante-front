@@ -39,7 +39,9 @@
               <tr *ngFor="let prato of pratos">            
                 <td class="opcao delete"><img src="../assets/img/delete.png" (click)="onDelete(prato); $event.stopPropagation()" /></td>
                 <td class="opcao edit"><img src="../assets/img/edit.png" [routerLink]="['/prato/save', prato.Id]" /></td>
-                <td *ngFor="let restaurante of restaurantes"><span *ngIf="restaurante.Id == prato.Id">{{restaurante.Nome}}</span></td>                                             
+                <td *ngFor="let restaurante of restaurantes;" [hidden]="!(restaurante.Id == prato.RestauranteId)">
+                  <span *ngIf="restaurante.Id == prato.RestauranteId">{{restaurante.Nome}}</span>
+                </td>                                             
                 <td>{{prato.Nome}}</td>           
                 <td>{{prato.Preco}}</td>           
               </tr>           
@@ -48,3 +50,5 @@
       </div>
     </div>
 </div>
+
+  
