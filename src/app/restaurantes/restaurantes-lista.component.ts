@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 import { Restaurante } from './shared/restaurante';
 
@@ -8,18 +10,18 @@ import { DialogService } from '../dialog.service';
 @Component({  
   selector: 'restaurantes-lista',
   templateUrl: './restaurantes-lista.component.html',
-  styleUrls: ['./restaurantes-lista.component.css']
+  styleUrls: ['./restaurantes-lista.component.css'],
 })
 export class RestaurantesListaComponent implements OnInit {
-
-  restaurantes: Restaurante[] = [];
+  
+  public restaurantes: Restaurante[] = [];
   mensagem: {};
-  classesCss: {};
+  classesCss: {};  
   private currentTimeout: any;  
 
   constructor(
     private restauranteService: RestauranteService,
-    private dialogService: DialogService
+    private dialogService: DialogService  
   ) {}
 
   ngOnInit(): void {
@@ -28,7 +30,7 @@ export class RestaurantesListaComponent implements OnInit {
             this.restaurantes = restaurantes;             
         }).catch(err =>  {
             console.log(err);
-        });          
+     });         
   } 
 
   onDelete(restaurante: Restaurante): void {    
@@ -77,10 +79,6 @@ export class RestaurantesListaComponent implements OnInit {
           'alert': true
       };
       this.classesCss['alert-' + tipo] = true;
-  } 
-
-  onClickMe(): void {
-    console.log('clicou no botao deletar');
-  }
+  }   
 
 }

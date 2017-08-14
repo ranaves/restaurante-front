@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule}   from '@angular/router';
 
 import { PratosListaComponent} from './pratos-lista.component';
+import { PratoDetalheComponent } from './prato-detalhe.component';
+
+import { PratoService } from './shared/prato.service';
 
 @NgModule({
   imports: [
@@ -12,11 +15,12 @@ import { PratosListaComponent} from './pratos-lista.component';
     RouterModule
   ],
   declarations: [
-    PratosListaComponent
+    PratosListaComponent,
+    PratoDetalheComponent
   ],
   exports: [
     PratosListaComponent
   ],
-  providers:[]
+  providers:[ PratoService ]
 })
 export class PratosModule { }

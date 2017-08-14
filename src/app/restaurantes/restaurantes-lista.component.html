@@ -27,10 +27,9 @@
           <form>
             <div class="form-group">
               <label for="nome">Nome</label>
-              <input type="text" class="form-control" id="nome" placeholder="Digite o nome do restaurante">
-              <br>
-            </div>
-            <a class="btn btn-primary" style="margin-right: 20px;" routerLink="">Pesquisar</a>
+              <input type="text" class="form-control" placeholder="Digite o nome do restaurante">            
+            </div>            
+            <button type="button" class="btn btn-primary" style="margin-right: 20px;"[disabled]="true">Pesquisar</button>           
             <a class="btn btn-success" routerLink="/restaurante/save">Cadastrar Novo Restaurante</a>
           </form>
         </div>
@@ -52,7 +51,7 @@
               <td colspan="4" align="center">Nenhum registro encontrado</td>
           </tr>                     
           <tr *ngFor="let restaurante of restaurantes">            
-            <td class="opcao delete"><img src="../assets/img/delete.png" (click)="onDelete(restaurante)" /></td>
+            <td class="opcao delete"><img src="../assets/img/delete.png" (click)="onDelete(restaurante); $event.stopPropagation()" /></td>
             <td class="opcao edit"><img src="../assets/img/edit.png" [routerLink]="['/restaurante/save', restaurante.Id]" /></td>
             <td>{{restaurante.Nome}}</td>           
           </tr>           

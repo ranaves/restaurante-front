@@ -32,7 +32,6 @@ export class RestauranteService {
         .toPromise()
         .then((response: Response) => response.json() as Restaurante)
         .catch(this.handleError);
-
   }
 
   update(restaurante: Restaurante): Promise<Restaurante> {
@@ -44,19 +43,23 @@ export class RestauranteService {
         .catch(this.handleError);
   }
 
-  delete(restaurante: Restaurante): Promise<Restaurante> {
-    console.log(restaurante.Id);    
+  delete(restaurante: Restaurante): Promise<Restaurante> {      
     const url = `${this.restaurantesUrl}/${restaurante.Id}`;    
     return this.http
         .delete(url, {headers: this.headers})
         .toPromise()
         .then(() => restaurante as Restaurante)
         .catch(this.handleError);
-}
+  }
+
+  search(term: string): Observable<Restaurante[]> {   
+    return this.http.get(`${this.restaurantesUrl}/?nome=${term}`)
+    .map(response => response.json() as Restaurante[]);
+  }
 
   private handleError(err: any): Promise<any> {
-    console.log('Error: ', err);
-    return Promise.reject(err.message || err);
+      console.log('Error: ', err);
+      return Promise.reject(err.message || err);
   }
 
 }

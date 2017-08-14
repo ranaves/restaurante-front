@@ -1,3 +1,50 @@
-<p>
-  pratos-lista works!
-</p>
+<div class="container">
+    <div class="row">
+      <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12">
+        <h2 class="titulo"> Pratos </h2>
+        <div [ngClass]="classesCss" role="alert" *ngIf="mensagem">
+          <span [ngSwitch]="mensagem.tipo">
+            <strong *ngSwitchCase="'danger'">Erro!</strong>
+            <strong *ngSwitchCase="'warning'">Alerta!</strong>
+            <strong *ngSwitchCase="'success'">Sucesso!</strong>
+            <strong *ngSwitchCaseDefault>Informação!</strong>
+          </span>              
+          {{ mensagem.texto }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12">       
+        <form>                  
+          <a class="btn btn-success" routerLink="/prato/save">Cadastrar Novo Prato</a>
+        </form>         
+      </div>
+    </div> 
+    <div class="row">
+      <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12"> 
+        <table style="margin-top: 30px;" class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th></th>
+                <th></th>
+                <th>Restaurante</th>            
+                <th>Prato</th>            
+                <th>Preço (R$)</th>            
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="pratos.length == 0">
+                  <td colspan="5" align="center">Nenhum registro encontrado</td>
+              </tr>                     
+              <tr *ngFor="let prato of pratos">            
+                <td class="opcao delete"><img src="../assets/img/delete.png" (click)="onDelete(prato); $event.stopPropagation()" /></td>
+                <td class="opcao edit"><img src="../assets/img/edit.png" [routerLink]="['/prato/save', prato.Id]" /></td>
+                <td *ngFor="let restaurante of restaurantes"><span *ngIf="restaurante.Id == prato.Id">{{restaurante.Nome}}</span></td>                                             
+                <td>{{prato.Nome}}</td>           
+                <td>{{prato.Preco}}</td>           
+              </tr>           
+            </tbody>
+          </table>
+      </div>
+    </div>
+</div>

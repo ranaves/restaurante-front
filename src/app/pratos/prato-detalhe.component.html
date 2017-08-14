@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12">
+        <h2 class="titulo">{{titulo}}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-12 col-sm-12 col-lg-12 col-xl-12">
+        <div class="card">
+          <div class="card-header">
+            <ul class="nav nav-pills card-header-pills">
+              <li class="nav-item">
+                <a class="nav-link">Dados</a>
+              </li>
+            </ul>
+          </div>
+          <div class="card-block">
+            <form (ngSubmit)="onSubmit()" #pratoForm="ngForm" novalidate>
+              <div [ngClass]="getFormGroupClass(restauranteid.valid, restauranteid.pristine)">
+                  <label for="restaurante">Restaurante</label>
+                  <select [ngClass]="getFormControlClass(restauranteid.valid, restauranteid.pristine)"                  
+                  name ="restaurante"
+                  required
+                  #restauranteid="ngModel"
+                  [(ngModel)]="prato.RestauranteId">                   
+                    <option *ngFor="let restaurante of restaurantes" [value]="restaurante.Id">{{restaurante.Nome}}</option>                  
+                  </select>
+                  <div class="form-control-feedback" [hidden]="restauranteid.valid || restauranteid.pristine">O campo restaurante é obrigatório!</div>
+              </div>
+              <div [ngClass]="getFormGroupClass(nome.valid, nome.pristine)">
+                <label for="prato">Prato</label>
+                <input type="text" [ngClass]="getFormControlClass(nome.valid, nome.pristine)"
+                  placeholder="Digite o nome do prato"
+                  name ="prato" 
+                  required
+                  #nome="ngModel"
+                  [(ngModel)]="prato.Nome">
+                <div class="form-control-feedback" [hidden]="nome.valid || nome.pristine">O campo prato é obrigatório!</div>   
+              </div>
+              <div [ngClass]="getFormGroupClass(preco.valid, preco.pristine)">
+                  <label for="preco">Preço (R$)</label>
+                  <input type="text" [ngClass]="getFormControlClass(preco.valid, preco.pristine)"
+                    placeholder="Digite preço do prato"
+                    name ="preco" 
+                    required
+                    #preco="ngModel"
+                    [(ngModel)]="prato.Preco">
+                  <div class="form-control-feedback" [hidden]="preco.valid || preco.pristine">O campo preço é obrigatório!</div>
+                  <br>
+               </div>
+               <button type="button" class="btn btn-danger" style="margin-right: 20px;" (click)="goBack()">Cancelar</button>
+               <button type="submit" class="btn btn-success" [disabled]="!pratoForm.form.valid">Salvar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

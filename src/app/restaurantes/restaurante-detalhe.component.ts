@@ -5,7 +5,7 @@ import { Restaurante } from './shared/restaurante';
 import { RestauranteService } from './shared/restaurante.service';
 
 @Component({
-  selector: 'app-restaurante-detalhe',
+  selector: 'restaurante-detalhe',
   templateUrl: './restaurante-detalhe.component.html',
   styleUrls: ['./restaurante-detalhe.component.css']
 })
@@ -13,6 +13,7 @@ export class RestauranteDetalheComponent implements OnInit {
 
   restaurante: Restaurante;
   private isNew: boolean = true;
+  titulo: string = "Cadastro de Restaurante";
 
   constructor(
     private restauranteService: RestauranteService,
@@ -27,7 +28,8 @@ export class RestauranteDetalheComponent implements OnInit {
         let id: number = +params['id'];
         
         if (id) {
-            this.isNew = false;                
+            this.isNew = false;   
+            this.titulo = "Edição de Restaurante";             
             this.restauranteService.find(id)
             .then((restaurante: Restaurante) => {
                 this.restaurante = restaurante;        
@@ -40,7 +42,8 @@ export class RestauranteDetalheComponent implements OnInit {
     let promise;
    
     if (this.isNew) {
-        promise = this.restauranteService.create(this.restaurante);         
+        promise = this.restauranteService.create(this.restaurante);  
+        console.log(this.restaurante);       
     } else {
         promise = this.restauranteService.update(this.restaurante);        
     }
