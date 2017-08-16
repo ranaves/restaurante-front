@@ -10,7 +10,8 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class RestauranteService {
 
-  private restaurantesUrl: string = 'http://192.168.0.20:3000/api/restaurantes';
+  //private restaurantesUrl: string = 'http://192.168.0.20:3000/api/restaurantes';
+  private restaurantesUrl: string = 'http://app-restaurante.apphb.com//api/restaurantes';
   private headers: Headers = new Headers({'Content-Type': 'application/json'});
     
   constructor(private http: Http) {}

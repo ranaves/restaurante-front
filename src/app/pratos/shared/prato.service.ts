@@ -9,7 +9,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class PratoService {
 
-  private pratosUrl: string = 'http://192.168.0.20:3000/api/pratos';
+  //private pratosUrl: string = 'http://192.168.0.20:3000/api/pratos';
+  private pratosUrl: string = 'http://app-restaurante.apphb.com/api/pratos';
   private headers: Headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) {}
