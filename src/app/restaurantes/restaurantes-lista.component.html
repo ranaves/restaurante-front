@@ -56,8 +56,8 @@
               <td colspan="4" align="center">Nenhum registro encontrado</td>
           </tr>                     
           <tr *ngFor="let restaurante of restaurantes">            
-            <td class="opcao delete"><img src="../assets/img/delete.png" (click)="onDelete(restaurante); $event.stopPropagation()" /></td>
-            <td class="opcao edit"><img src="../assets/img/edit.png" [routerLink]="['/restaurante/save', restaurante.Id]" /></td>
+            <td class="opcao delete"><img src="assets/img/delete.png" (click)="onDelete(restaurante); $event.stopPropagation()" /></td>
+            <td class="opcao edit"><img src="assets/img/edit.png" [routerLink]="['/restaurante/save', restaurante.Id]" /></td>
             <td>{{restaurante.Nome}}</td>           
           </tr>           
         </tbody>
