@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class RestauranteService {
@@ -52,9 +53,13 @@ export class RestauranteService {
         .catch(this.handleError);
   }
 
-  search(term: string): Observable<Restaurante[]> {   
+  search(term: string): Promise<Restaurante[]> {   
     return this.http.get(`${this.restaurantesUrl}/?nome=${term}`)
-    .map(response => response.json() as Restaurante[]);
+      .toPromise()
+      .then(response => response.json() as Restaurante[])
+      .catch(this.handleError);  
+
+    //.map((res: Response) => res.json().data as Restaurante[]);
   }
 
   private handleError(err: any): Promise<any> {

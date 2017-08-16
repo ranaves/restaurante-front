@@ -30,8 +30,7 @@ export class PratoDetalheComponent implements OnInit {
 
     this.restauranteService.findAll()
     .then((restaurantes: Restaurante[]) => {
-        this.restaurantes = restaurantes;   
-        console.log(this.restaurantes);                 
+        this.restaurantes = restaurantes;                  
     }).catch(err =>  {
         console.log(err);
     }); 

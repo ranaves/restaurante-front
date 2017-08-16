@@ -18,6 +18,8 @@ export class RestaurantesListaComponent implements OnInit {
   mensagem: {};
   classesCss: {};  
   private currentTimeout: any;  
+  restaurantesLista: Observable<Restaurante[]>;
+  public isListaCompleta: boolean;
 
   constructor(
     private restauranteService: RestauranteService,
@@ -25,12 +27,13 @@ export class RestaurantesListaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-     this.restauranteService.findAll()
+    this.restauranteService.findAll()
         .then((restaurantes: Restaurante[]) => {
             this.restaurantes = restaurantes;             
         }).catch(err =>  {
             console.log(err);
-     });         
+    });        
+    this.isListaCompleta = true;     
   } 
 
   onDelete(restaurante: Restaurante): void {    
@@ -75,10 +78,30 @@ export class RestaurantesListaComponent implements OnInit {
   }
 
   private montarClasses(tipo: string): void {
-      this.classesCss = {
-          'alert': true
-      };
-      this.classesCss['alert-' + tipo] = true;
+    this.classesCss = {
+        'alert': true
+    };
+    this.classesCss['alert-' + tipo] = true;
   }   
+
+  getSearch(term: string): void {
+    this.restauranteService.search(term)
+    .then((restaurantes: Restaurante[]) => {
+        this.restaurantes = restaurantes;                  
+    }).catch(err =>  {
+        console.log(err);
+    }); 
+    this.isListaCompleta = false; 
+  }
+
+  onEnter(term: string): void {     
+     if (term =='' && !this.isListaCompleta)  {
+        this.ngOnInit();      
+     }
+  }
+
+  testeForm(c): void {
+      console.log(c);
+  }
 
 }

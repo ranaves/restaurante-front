@@ -24,12 +24,17 @@
           </ul>
         </div>
         <div class="card-block">
-          <form>
+          <form #restauranteForm="ngForm" novalidate>
             <div class="form-group">
               <label for="nome">Nome</label>
-              <input type="text" class="form-control" placeholder="Digite o nome do restaurante">            
-            </div>            
-            <button type="button" class="btn btn-primary" style="margin-right: 20px;"[disabled]="true">Pesquisar</button>           
+              <input (keyup.enter)="onEnter(nome.value)" #nome type="text" class="form-control" 
+              placeholder="Digite o nome do restaurante"
+              required
+              name="nome"               
+              [ngModel]="">            
+            </div>                    
+            <button type="button" class="btn btn-primary" style="margin-right: 20px;" 
+              [disabled]="!restauranteForm.form.valid " (click)="getSearch(nome.value)">Pesquisar</button>           
             <a class="btn btn-success" routerLink="/restaurante/save">Cadastrar Novo Restaurante</a>
           </form>
         </div>
