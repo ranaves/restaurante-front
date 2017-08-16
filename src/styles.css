@@ -17,4 +17,4 @@ td.opcao.edit {
     width: 40px;
 }
 
-button:hover { cursor: pointer; }
+button:hover, td img:hover { cursor: pointer; }
